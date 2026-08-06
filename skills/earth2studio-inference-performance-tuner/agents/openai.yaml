@@ -1,0 +1,4 @@
+interface:
+  display_name: "Earth2Studio Inference Performance Tuner"
+  short_description: "Profile and tune weather-model inference"
+  default_prompt: "Use $earth2studio-inference-performance-tuner to analyze this Earth2Studio inference workload and produce evidence-backed optimization recommendations."

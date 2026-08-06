@@ -1,0 +1,55 @@
+{
+  "critical_path": {
+    "confidence": "high",
+    "first_kernel_to_last_kernel_ms": 32919.752,
+    "inter_kernel_or_launch_gap_ms": 307.66400000000067,
+    "kernel_busy_ms": 32612.088,
+    "kernel_busy_pct": 99.06541215741844,
+    "method": "HTA-normalized single-CUDA-stream hardware critical path",
+    "stream": 14
+  },
+  "forward": {
+    "boundary_duration_ms": 32919.752,
+    "cuda_streams": [
+      14
+    ],
+    "dominant_table_coverage_pct": 97.71894090313995,
+    "dominant_table_rows": 10,
+    "gpu_kernel_time_ms": 32612.088,
+    "kernel_count": 88886
+  },
+  "hta_api_limitations": [
+    "get_gpu_kernels_with_user_annotations failed because HTA 0.5.0 interval construction observed a rounded end before ts; direct filtering of HTA-normalized ts/dur by the native GPU forecast_step annotation was used."
+  ],
+  "pipeline_duration_ms": 34637.377,
+  "profiler_steps": [
+    0
+  ],
+  "provenance": {
+    "assumptions": [
+      "HTA normalized ts and dur are microseconds.",
+      "The only CUDA stream carrying forward kernels is the representative critical-path stream.",
+      "HTA get_gpu_kernels_with_user_annotations is unavailable for this trace because its interval builder rejects the PyTorch nanosecond-rounded end column; native GPU annotation bounds are used instead.",
+      "Shapes and Python stacks are unavailable because the confirmed capture disabled record_shapes and with_stack."
+    ],
+    "extraction_command": "uv run --offline --isolated --with HolisticTraceAnalysis python outputs/atlas_performance_test/analyze_atlas_trace.py <trace> --bundle <bundle>",
+    "hta_version": "0.5.0",
+    "rank": 0,
+    "step_boundary": "native Kineto gpu_user_annotation:forecast_step",
+    "trace": "/mymount/ramu-data/repos/earth2studio/outputs/atlas_performance_test/run_20260806_phase1/traces/atlas-baseline.json",
+    "trace_sha256": "ce1904e5b6dc869ed4da239a876157cad275476d851a06b42a40f2d0d695586f"
+  },
+  "schema_version": "0.1",
+  "temporal_breakdown": [
+    {
+      "compute_time(us)": 32585982.0,
+      "compute_time_pctg": 98.2,
+      "idle_time(us)": 501946.0,
+      "idle_time_pctg": 1.51,
+      "kernel_time(us)": 33182013.0,
+      "non_compute_time(us)": 94085.0,
+      "non_compute_time_pctg": 0.28,
+      "rank": 0
+    }
+  ]
+}

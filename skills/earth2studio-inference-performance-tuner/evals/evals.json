@@ -1,0 +1,71 @@
+[
+  {
+    "id": "inference-perf-001-deterministic-low-utilization",
+    "question": "My Earth2Studio deterministic GraphCast forecast has low GPU utilization. Profile the full workflow and tell me what to optimize.",
+    "expected_skill": "earth2studio-inference-performance-tuner",
+    "ground_truth": "Requires command, representative data, and correctness check; resolves and displays a complete test configuration; waits for explicit confirmation before execution; separates data, forecast-step, and output phases; produces unprofiled warm end-to-end and steady-state baselines and HTA-backed findings.",
+    "expected_behavior": [
+      "Does not execute inference before explicit configuration confirmation",
+      "Separates warm end-to-end and steady-state measurements; skips startup by default",
+      "Profiles data, coordinate, model, and output phases",
+      "Requires correctness evidence and recommendation-only findings"
+    ]
+  },
+  {
+    "id": "inference-perf-002-corrdiff-kernels",
+    "question": "CorrDiff inference is slow. Identify the dominant CUDA kernels in each forward pass and show me a detailed table and diagrams.",
+    "expected_skill": "earth2studio-inference-performance-tuner",
+    "ground_truth": "Validates forward boundaries before HTA, writes detailed exact-name dominant-kernel JSON/CSV/Markdown tables, and renders an HTA-derived family-lane diagram retaining launch order and gaps.",
+    "expected_behavior": [
+      "Validates annotation health before HTA",
+      "Creates exact-kernel table with call and duration distribution fields",
+      "Creates a forward dominant-kernel SVG with per-family lanes",
+      "Does not visually estimate timing values"
+    ]
+  },
+  {
+    "id": "inference-perf-003-async-io",
+    "question": "Compare ZarrBackend with nonblocking AsyncZarrBackend for a 50-member Earth2Studio ensemble and tune the faster path.",
+    "expected_skill": "earth2studio-inference-performance-tuner",
+    "ground_truth": "Includes async close/flush in end-to-end timing, holds ensemble workload invariant, validates output equivalence, diagnoses before tuning, and reports speedup only from paired unprofiled runs.",
+    "expected_behavior": [
+      "Includes asynchronous output completion in timing",
+      "Holds member count, batches, variables, data, and seed fixed",
+      "Runs correctness before accepting an IO change",
+      "Does not use profiler time as benchmark evidence"
+    ]
+  },
+  {
+    "id": "inference-perf-004-recipe-distributed",
+    "question": "Profile the multi-GPU recipes/eval forecast pipeline and find why scaling stalls after four GPUs.",
+    "expected_skill": "earth2studio-inference-performance-tuner",
+    "ground_truth": "Collects per-rank evidence, rank imbalance, communication/compute overlap, work-item distribution, regrid and output phases, and scaling metrics using a confirmed representative recipe configuration.",
+    "expected_behavior": [
+      "Preserves per-rank metrics",
+      "Analyzes work-item imbalance and communication overlap",
+      "Separates regridding and output from model compute",
+      "Requires a representative confirmed configuration"
+    ]
+  },
+  {
+    "id": "inference-perf-negative-001-training",
+    "question": "Tune my PhysicsNeMo training loop; backward is slow.",
+    "expected_skill": null,
+    "ground_truth": "This is training, not Earth2Studio inference performance analysis.",
+    "expected_behavior": ["Does not activate this skill"]
+  },
+  {
+    "id": "inference-perf-negative-002-accuracy",
+    "question": "Which Earth2Studio weather model has the best forecast accuracy for Europe?",
+    "expected_skill": null,
+    "ground_truth": "This is model discovery/accuracy evaluation, not performance profiling.",
+    "expected_behavior": ["Does not activate this skill"]
+  },
+  {
+    "id": "inference-perf-negative-003-serving",
+    "question": "Load test my Earth2Studio HTTP serving deployment at 500 concurrent requests.",
+    "expected_skill": null,
+    "ground_truth": "Serving concurrency/load testing is excluded from this initial inference-workload skill.",
+    "expected_behavior": ["Does not activate this skill"]
+  }
+]

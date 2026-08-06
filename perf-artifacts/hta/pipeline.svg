@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="314" viewBox="0 0 1500 314">
+<style>text{font-family:Arial,sans-serif;fill:#172033}.title{font-size:25px;font-weight:700}.sub{font-size:13px;fill:#53657a}.lane{font-size:15px;font-weight:700}.small{font-size:11px}.grid{stroke:#dce3ec;stroke-width:1}</style>
+<rect width="100%" height="100%" fill="#f8fafc"/>
+<text x="28" y="38" class="title">Atlas warm inference pipeline</text>
+<text x="28" y="62" class="sub">profiled-one-step-rollout · 34637.38 ms</text>
+<line x1="230.0" y1="84" x2="230.0" y2="269" class="grid"/>
+<text x="230.0" y="287" text-anchor="middle" class="small">0.00 ms</text>
+<line x1="440.0" y1="84" x2="440.0" y2="269" class="grid"/>
+<text x="440.0" y="287" text-anchor="middle" class="small">6927.48 ms</text>
+<line x1="650.0" y1="84" x2="650.0" y2="269" class="grid"/>
+<text x="650.0" y="287" text-anchor="middle" class="small">13854.95 ms</text>
+<line x1="860.0" y1="84" x2="860.0" y2="269" class="grid"/>
+<text x="860.0" y="287" text-anchor="middle" class="small">20782.43 ms</text>
+<line x1="1070.0" y1="84" x2="1070.0" y2="269" class="grid"/>
+<text x="1070.0" y="287" text-anchor="middle" class="small">27709.90 ms</text>
+<line x1="1280.0" y1="84" x2="1280.0" y2="269" class="grid"/>
+<text x="1280.0" y="287" text-anchor="middle" class="small">34637.38 ms</text>
+<text x="216" y="114" text-anchor="end" class="lane">CPU</text>
+<rect x="230" y="90" width="1050" height="40" fill="#edf2f7" stroke="#94a3b8"/>
+<rect x="230.0" y="90" width="1.2" height="40" fill="#d9d9d9" stroke="#fff"><title>idle/unattributed: 2.213 ms</title></rect>
+<rect x="230.1" y="90" width="45.9" height="40" fill="#59a14f" stroke="#fff"><title>data_fetch: 1515.189 ms</title></rect>
+<rect x="276.0" y="90" width="1.2" height="40" fill="#d9d9d9" stroke="#fff"><title>idle/unattributed: 0.058 ms</title></rect>
+<rect x="276.0" y="90" width="1.2" height="40" fill="#af7aa1" stroke="#fff"><title>coordinate_mapping: 0.608 ms</title></rect>
+<rect x="276.0" y="90" width="1.2" height="40" fill="#d9d9d9" stroke="#fff"><title>idle/unattributed: 0.021 ms</title></rect>
+<rect x="276.0" y="90" width="1.2" height="40" fill="#edc948" stroke="#fff"><title>output_initialize: 13.271 ms</title></rect>
+<rect x="276.4" y="90" width="1.2" height="40" fill="#d9d9d9" stroke="#fff"><title>idle/unattributed: 1.439 ms</title></rect>
+<rect x="276.5" y="90" width="1.2" height="40" fill="#7b35de" stroke="#fff"><title>output_filter: 25.259 ms</title></rect>
+<rect x="277.2" y="90" width="1.2" height="40" fill="#d9d9d9" stroke="#fff"><title>idle/unattributed: 0.020 ms</title></rect>
+<rect x="277.2" y="90" width="2.1" height="40" fill="#66788a" stroke="#fff"><title>output_write: 68.242 ms</title></rect>
+<rect x="279.3" y="90" width="1.2" height="40" fill="#d9d9d9" stroke="#fff"><title>idle/unattributed: 0.246 ms</title></rect>
+<rect x="279.3" y="90" width="977.2" height="40" fill="#59a14f" stroke="#fff"><title>forecast_step: 32236.022 ms</title></rect>
+<text x="767.9" y="115" text-anchor="middle" class="small" style="fill:#fff">forecast_step</text>
+<rect x="1256.5" y="90" width="20.7" height="40" fill="#d9d9d9" stroke="#fff"><title>idle/unattributed: 684.003 ms</title></rect>
+<rect x="1277.2" y="90" width="1.2" height="40" fill="#af7aa1" stroke="#fff"><title>output_filter: 0.833 ms</title></rect>
+<rect x="1277.3" y="90" width="1.2" height="40" fill="#d9d9d9" stroke="#fff"><title>idle/unattributed: 0.019 ms</title></rect>
+<rect x="1277.3" y="90" width="2.7" height="40" fill="#edc948" stroke="#fff"><title>output_write: 89.710 ms</title></rect>
+<rect x="1280.0" y="90" width="1.2" height="40" fill="#d9d9d9" stroke="#fff"><title>idle/unattributed: 0.224 ms</title></rect>
+<text x="216" y="206" text-anchor="end" class="lane">GPU</text>
+<rect x="230" y="182" width="1050" height="40" fill="#edf2f7" stroke="#94a3b8"/>
+<rect x="230.0" y="182" width="42.9" height="40" fill="#d9d9d9" stroke="#fff"><title>idle/unattributed: 1415.087 ms</title></rect>
+<rect x="272.9" y="182" width="2.0" height="40" fill="#59a14f" stroke="#fff"><title>data_fetch: 65.491 ms</title></rect>
+<rect x="274.9" y="182" width="1.6" height="40" fill="#d9d9d9" stroke="#fff"><title>idle/unattributed: 52.586 ms</title></rect>
+<rect x="276.5" y="182" width="1.2" height="40" fill="#af7aa1" stroke="#fff"><title>output_filter: 24.656 ms</title></rect>
+<rect x="277.2" y="182" width="1.2" height="40" fill="#d9d9d9" stroke="#fff"><title>idle/unattributed: 2.271 ms</title></rect>
+<rect x="277.3" y="182" width="1.2" height="40" fill="#edc948" stroke="#fff"><title>output_write: 37.277 ms</title></rect>
+<rect x="278.4" y="182" width="1.2" height="40" fill="#d9d9d9" stroke="#fff"><title>idle/unattributed: 29.348 ms</title></rect>
+<rect x="279.3" y="182" width="997.9" height="40" fill="#7b35de" stroke="#fff"><title>forecast_step: 32919.752 ms</title></rect>
+<text x="778.3" y="207" text-anchor="middle" class="small" style="fill:#fff">forecast_step</text>
+<rect x="1277.2" y="182" width="1.2" height="40" fill="#d9d9d9" stroke="#fff"><title>idle/unattributed: 0.749 ms</title></rect>
+<rect x="1277.3" y="182" width="1.2" height="40" fill="#66788a" stroke="#fff"><title>output_filter: 0.096 ms</title></rect>
+<rect x="1277.3" y="182" width="1.2" height="40" fill="#d9d9d9" stroke="#fff"><title>idle/unattributed: 2.886 ms</title></rect>
+<rect x="1277.4" y="182" width="1.4" height="40" fill="#59a14f" stroke="#fff"><title>output_write: 46.901 ms</title></rect>
+<rect x="1278.8" y="182" width="1.2" height="40" fill="#d9d9d9" stroke="#fff"><title>idle/unattributed: 40.277 ms</title></rect>
+</svg>
