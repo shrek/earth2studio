@@ -57,7 +57,9 @@ Ranges can overlap asynchronous GPU execution and should not be summed as indepe
 
 ## CPU/GPU inference pipeline
 
-![CPU/GPU inference pipeline](hta/pipeline.svg)
+![CPU/GPU inference pipeline](hta/pipeline.png)
+
+[Download the vector SVG](hta/pipeline.svg).
 
 ## Forward-pass dominant kernels
 
@@ -71,7 +73,9 @@ Validated boundary: rank 0 `forecast_step_1`; 32,919.752 ms boundary, 32,612.088
 
 The complete ten-row table with every required statistic and provenance is in [dominant-kernels.md](hta/dominant-kernels.md), with equivalent JSON and CSV artifacts.
 
-![Forward dominant-kernel timeline](hta/dominant-kernels.svg)
+![Forward dominant-kernel timeline](hta/dominant-kernels.png)
+
+[Download the compact vector SVG](hta/dominant-kernels.svg).
 
 The launch pattern is highly repetitive, consistent with the fixed 100 stochastic-interpolant steps. Only one forecast step was profiled, so the trace does not support claims about changing dominance between steps; unprofiled later steps have nearly identical latency.
 
@@ -109,8 +113,8 @@ All baseline repetitions passed with identical summary statistics for `u10m` and
 - `correctness.json`: correctness evidence
 - `baseline/raw.json`, `baseline/summary.json`, `baseline/details.json`: unprofiled measurements
 - `traces/atlas-baseline.json`, `traces/annotation-health-baseline.json`: trace and health
-- `hta/analysis.json`, `hta/pipeline.json`, `hta/pipeline.svg`: HTA evidence and pipeline
-- `hta/dominant-kernels.json`, `.csv`, `.md`, `.svg`: detailed kernel table and timeline
+- `hta/analysis.json`, `hta/pipeline.json`, `hta/pipeline.png`, `.svg`: HTA evidence and pipeline preview
+- `hta/dominant-kernels.json`, `.csv`, `.md`, `.png`, `.svg`: detailed kernel table and compact timeline preview
 - `phase-source-map.json`, `source-analysis.json`, `findings.json`: source review
 - `ncu/decision.json`: explicit NCU skip decision
 

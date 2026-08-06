@@ -18,6 +18,7 @@ WIDTH = 1500
 LEFT = 230
 RIGHT = 220
 PLOT = WIDTH - LEFT - RIGHT
+MIN_DISPLAY_WIDTH = 1.2
 COLORS = (
     "#4e79a7",
     "#59a14f",
@@ -311,6 +312,36 @@ def write_tables(document: dict[str, Any], output: Path) -> None:
     )
 
 
+def compact_display_intervals(
+    kernels: list[dict[str, Any]], duration: float
+) -> list[dict[str, Any]]:
+    """Merge launches that overlap at the SVG's display-pixel resolution."""
+    intervals: list[dict[str, Any]] = []
+    for kernel in sorted(
+        kernels, key=lambda item: (float(item["start_ms"]), float(item["end_ms"]))
+    ):
+        start_ms = float(kernel["start_ms"])
+        end_ms = float(kernel["end_ms"])
+        start_x = xscale(start_ms, duration)
+        end_x = max(start_x + MIN_DISPLAY_WIDTH, xscale(end_ms, duration))
+        if intervals and start_x <= float(intervals[-1]["end_x"]):
+            current = intervals[-1]
+            current["end_x"] = max(float(current["end_x"]), end_x)
+            current["end_ms"] = max(float(current["end_ms"]), end_ms)
+            current["launch_count"] = int(current["launch_count"]) + 1
+        else:
+            intervals.append(
+                {
+                    "start_x": start_x,
+                    "end_x": end_x,
+                    "start_ms": start_ms,
+                    "end_ms": end_ms,
+                    "launch_count": 1,
+                }
+            )
+    return intervals
+
+
 def render_kernels(document: dict[str, Any], path: Path) -> None:
     steps = document["forward"]["steps"]
     panels: list[tuple[dict[str, Any], list[str]]] = []
@@ -322,7 +353,7 @@ def render_kernels(document: dict[str, Any], path: Path) -> None:
     lines = svg_start(
         total_height,
         document["forward"].get("title", "Forward-pass dominant kernels"),
-        "One lane per kernel family; launch order and gaps are preserved from HTA evidence",
+        "One lane per family; launch order and gaps preserved at display-pixel resolution",
     )
     top = 88
     for step, families in panels:
@@ -353,15 +384,19 @@ def render_kernels(document: dict[str, Any], path: Path) -> None:
             lines.append(
                 f'<text x="{LEFT - 12}" y="{y + 18}" text-anchor="end" class="small">{escape(family)} · {totals[family]:.2f} ms · {share:.1f}%</text>'
             )
-            for kernel in (
+            family_kernels = [
                 item for item in step["kernels"] if item["family"] == family
-            ):
-                start, end = float(kernel["start_ms"]), float(kernel["end_ms"])
-                x, width = xscale(start, duration), max(
-                    1.2, xscale(end, duration) - xscale(start, duration)
-                )
+            ]
+            for interval in compact_display_intervals(family_kernels, duration):
+                x = float(interval["start_x"])
+                width = float(interval["end_x"]) - x
                 color = COLORS[family_index % len(COLORS)]
-                title = f"{kernel['name']} | {end-start:.4f} ms | {kernel.get('source_range', 'source unavailable')}"
+                launch_count = int(interval["launch_count"])
+                title = (
+                    f"{family} | {launch_count} launch{'es' if launch_count != 1 else ''} | "
+                    f"{float(interval['start_ms']):.4f}-{float(interval['end_ms']):.4f} ms | "
+                    "compacted at display resolution; exact launches remain in pipeline.json"
+                )
                 lines.append(
                     f'<rect x="{x:.1f}" y="{y + 4}" width="{width:.1f}" height="20" fill="{color}" stroke="#fff"><title>{escape(title)}</title></rect>'
                 )

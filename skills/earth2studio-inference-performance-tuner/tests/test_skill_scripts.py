@@ -193,6 +193,28 @@ def test_renderer_writes_detailed_kernel_tables_and_diagrams(tmp_path: Path) -> 
     assert "launch order and gaps" in (output / "dominant-kernels.svg").read_text()
 
 
+def test_renderer_compacts_dense_launches_at_display_resolution(tmp_path: Path) -> None:
+    document = diagram_document()
+    step = document["forward"]["steps"][0]
+    step["kernels"] = [
+        {
+            "name": "dense_kernel",
+            "family": "dense",
+            "start_ms": index * 0.002,
+            "end_ms": index * 0.002 + 0.001,
+            "source_range": "model.forward",
+        }
+        for index in range(5000)
+    ]
+    source = tmp_path / "dense.json"
+    source.write_text(json.dumps(document))
+    output = tmp_path / "hta"
+    run("render_trace_diagrams.py", source, "--output-dir", output)
+    svg = (output / "dominant-kernels.svg").read_text()
+    assert len(svg) < 20_000
+    assert "5000 launches" in svg
+
+
 def test_trace_annotation_health_accepts_explicit_forecast_step(tmp_path: Path) -> None:
     trace = tmp_path / "trace.json"
     trace.write_text(
